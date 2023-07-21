@@ -25,7 +25,7 @@ const handleLogout = async (req, res) => {
     res.clearCookie("__session", {
       httpOnly: true,
       sameSite: "None",
-      secure: false,
+      secure: true,
     });
     return res.sendStatus(204);
   }
@@ -59,7 +59,7 @@ const handleLogout = async (req, res) => {
     res.clearCookie("__session", {
       httpOnly: true,
       sameSite: "None",
-      secure: false,
+      secure: true,
     });
     res.sendStatus(204);
   } catch (error) {

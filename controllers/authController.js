@@ -54,7 +54,7 @@ const handleLogin = async (req, res) => {
     res.cookie("__session", data.refresh_token, {
       httpOnly: true,
       sameSite: "None",
-      secure: false,
+      secure: true,
       maxAge: data.refresh_expires_in * 1000,
     });
     // Sending the Access Token the client
