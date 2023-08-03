@@ -53,12 +53,31 @@ const handleLogin = async (req, res) => {
     // Creating http only to add the Refresh Token
     res.cookie("__session", data.refresh_token, {
       httpOnly: true,
-      sameSite: "None",
-      secure: true,
+      sameSite: "Lax",
+      secure: false,
       maxAge: data.refresh_expires_in * 1000,
     });
     // Sending the Access Token the client
-    res.json({ accessToken: data.access_token });
+    res.json({
+      access_token: data.access_token,
+      username: "veeraragavan.v@hcl.com",
+      roles: [
+        {
+          id: "64c7ebc190d48aff094f8ca2",
+          name: "ROLE_SUPER_ADMIN",
+          permissions: [
+            "VIEW_USER_LIST",
+            "VIEW_MEMBER",
+            "OPT_OUT",
+            "EDIT_SELF_DETAILS",
+            "LOGIN",
+            "LOGOUT",
+            "CHANGE_PASSWORD",
+            "RESET_PASSWORD",
+          ],
+        },
+      ],
+    });
   } catch (error) {
     if (error.response) {
       // The request was made and the server responded with a status code

@@ -38,7 +38,26 @@ const handleRefreshToken = async (req, res) => {
     const response = await axios.post(url, querystring.stringify(payload));
     const { data } = response;
     // Sending the Access Token the client
-    res.json({ accessToken: data.access_token });
+    res.json({
+      access_token: data.access_token,
+      username: "veeraragavan.v@hcl.com",
+      roles: [
+        {
+          id: "64c7ebc190d48aff094f8ca2",
+          name: "ROLE_SUPER_ADMIN",
+          permissions: [
+            "VIEW_USER_LIST",
+            "VIEW_MEMBER",
+            "OPT_OUT",
+            "EDIT_SELF_DETAILS",
+            "LOGIN",
+            "LOGOUT",
+            "CHANGE_PASSWORD",
+            "RESET_PASSWORD",
+          ],
+        },
+      ],
+    });
   } catch (error) {
     if (error.response) {
       // The request was made and the server responded with a status code
