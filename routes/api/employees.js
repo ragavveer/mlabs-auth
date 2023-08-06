@@ -4,6 +4,8 @@ const employeesController = require("../../controllers/employeesController");
 
 router.route("/").get(employeesController.getAllEmployees);
 
+router.route("/").post(employeesController.getEmployee);
+
 router.route("/activate").put(employeesController.updateEmployee);
 
 router.route("/deactivate").put(employeesController.updateEmployee);

@@ -60,7 +60,9 @@ const handleLogin = async (req, res) => {
     // Sending the Access Token the client
     res.json({
       access_token: data.access_token,
-      username: "veeraragavan.v@hcl.com",
+      emailId: "veeraragavan.v@hcl.com",
+      username: "Veeraragavan Veeranan",
+      id: 1,
       roles: [
         {
           id: "64c7ebc190d48aff094f8ca2",

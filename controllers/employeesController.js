@@ -69,22 +69,22 @@ const updateEmployee = async (req, res) => {
 //     res.json(data.employees);
 // }
 
-// const getEmployee = (req, res) => {
-//   const employee = data.employees.find(
-//     (emp) => emp.id === parseInt(req.params.id)
-//   );
-//   if (!employee) {
-//     return res
-//       .status(400)
-//       .json({ message: `Employee ID ${req.params.id} not found` });
-//   }
-//   res.json(employee);
-// };
+const getEmployee = (req, res) => {
+  const employee = data.employees.find(
+    (emp) => emp.id === parseInt(req.body.id)
+  );
+  if (!employee) {
+    return res
+      .status(400)
+      .json({ message: `Employee ID ${req.params.id} not found` });
+  }
+  res.json([employee]);
+};
 
 module.exports = {
   getAllEmployees,
   //   createNewEmployee,
   updateEmployee,
   //   deleteEmployee,
-  //   getEmployee,
+  getEmployee,
 };
