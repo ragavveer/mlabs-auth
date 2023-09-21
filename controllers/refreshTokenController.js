@@ -42,23 +42,8 @@ const handleRefreshToken = async (req, res) => {
       access_token: data.access_token,
       emailId: "veeraragavan.v@hcl.com",
       username: "Veeraragavan Veeranan",
-      id: 1,
-      roles: [
-        {
-          id: "64c7ebc190d48aff094f8ca2",
-          name: "ROLE_SUPER_ADMIN",
-          permissions: [
-            "VIEW_USER_LIST",
-            "VIEW_MEMBER",
-            "OPT_OUT",
-            "EDIT_SELF_DETAILS",
-            "LOGIN",
-            "LOGOUT",
-            "CHANGE_PASSWORD",
-            "RESET_PASSWORD",
-          ],
-        },
-      ],
+      userId: 100,
+      roles: ["SUPER_ADMIN"],
     });
   } catch (error) {
     if (error.response) {

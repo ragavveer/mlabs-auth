@@ -38,6 +38,7 @@ const handleLogin = async (req, res) => {
     // Calling the keycloak server login
     const response = await axios.post(url, querystring.stringify(payload));
     const { data } = response;
+    console.log(data);
     // TODO use the redis here instead of local file.
     // Constructing the user data to store the loggedin user Refresh Token
     const user = { username, password, refreshToken: data.refresh_token };
@@ -62,23 +63,8 @@ const handleLogin = async (req, res) => {
       access_token: data.access_token,
       emailId: "veeraragavan.v@hcl.com",
       username: "Veeraragavan Veeranan",
-      id: 1,
-      roles: [
-        {
-          id: "64c7ebc190d48aff094f8ca2",
-          name: "ROLE_SUPER_ADMIN",
-          permissions: [
-            "VIEW_USER_LIST",
-            "VIEW_MEMBER",
-            "OPT_OUT",
-            "EDIT_SELF_DETAILS",
-            "LOGIN",
-            "LOGOUT",
-            "CHANGE_PASSWORD",
-            "RESET_PASSWORD",
-          ],
-        },
-      ],
+      userId: 100,
+      roles: ["SUPER_ADMIN"],
     });
   } catch (error) {
     if (error.response) {

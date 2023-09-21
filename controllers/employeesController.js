@@ -10,12 +10,12 @@ const getAllEmployees = async (req, res) => {
   const employees = data.employees;
   let { page, limit } = req.query;
   if (!page) page = 0;
-  if (!limit) limit = 10;
+  if (!limit) limit = 20;
   page = parseInt(page);
   limit = parseInt(limit);
   await new Promise((resolve) => setTimeout(() => resolve(), 2000));
   return res.json({
-    data: employees.slice(page * limit, page * limit + limit),
+    users: employees.slice(page * limit, page * limit + limit),
     total: employees.length,
   });
 };
@@ -37,18 +37,16 @@ const getAllEmployees = async (req, res) => {
 
 const updateEmployee = async (req, res) => {
   await new Promise((resolve) => setTimeout(() => resolve(true), 2000));
-  const employee = data.employees.find(
-    (emp) => emp.emailId === req.body.emailId
-  );
+  const employee = data.employees.find((emp) => emp.id === req.body.userId);
   if (!employee) {
     return res
       .status(400)
       .json({ message: `User ${req.body.emailId} not found` });
   }
-  if (employee.status === "active") {
-    employee.status = "inactive";
+  if (employee.status === "ACTIVE") {
+    employee.status = "INACTIVE";
   } else {
-    employee.status = "active";
+    employee.status = "ACTIVE";
   }
   // if (req.body.firstname) employee.firstname = req.body.firstname;
   // if (req.body.lastname) employee.lastname = req.body.lastname;
@@ -71,14 +69,14 @@ const updateEmployee = async (req, res) => {
 
 const getEmployee = (req, res) => {
   const employee = data.employees.find(
-    (emp) => emp.id === parseInt(req.body.id)
+    (emp) => emp.id === parseInt(req.body.userId)
   );
   if (!employee) {
     return res
       .status(400)
       .json({ message: `Employee ID ${req.params.id} not found` });
   }
-  res.json([employee]);
+  res.json(employee);
 };
 
 module.exports = {
